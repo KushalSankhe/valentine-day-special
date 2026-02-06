@@ -397,7 +397,6 @@
     <div id="celebration-popup">
         <p id="celebration-text">Yay! I love you My Champakali My baby My shona My darline My baccha! 💕</p>
     </div>
-
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
@@ -405,12 +404,26 @@
         let autoSlideInterval;
         const music = document.getElementById('bg-music');
 
+        // Preload all images for faster loading
+        function preloadImages() {
+            const imageUrls = [
+                'IMG_1.jpg', 'IMG_2.jpg', 'IMG_3.jpg', 'IMG_4.jpg', 'IMG_5.jpg', 'IMG_6.webp',
+                'IMG_7.jpg', 'IMG_8.jpg', 'IMG_9.jpg', 'IMG_10.jpg', 'IMG_11.jpg', 'IMG_12.jpg',
+                'IMG_13.jpg', 'IMG_14.jpg', 'IMG_15.jpg', 'IMG_16.jpg', 'IMG_17.jpg'
+            ];
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+
         function startStory() {
             document.getElementById('start-button').style.display = 'none';
             document.getElementById('slideshow').style.display = 'block';
             document.getElementById('progress-bar').style.display = 'block';
             music.play();
             music.volume = 0.3;
+            preloadImages(); // Preload images here for instant loading
             autoSlideInterval = setInterval(nextSlide, 4000);
             showSlide(currentSlide);
         }
